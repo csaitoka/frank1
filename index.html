@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Frank プライバシーポリシー</title>
+<style>
+  :root { --bg:#fff; --fg:#1d1d1f; --muted:#6e6e73; --line:#d2d2d7; --accent:#0a66c2; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#1c1c1e; --fg:#f2f2f7; --muted:#a1a1a6; --line:#3a3a3c; --accent:#6cb2ff; }
+  }
+  body { margin:0; background:var(--bg); color:var(--fg);
+         font:16px/1.75 -apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif; }
+  main { max-width:44rem; margin:0 auto; padding:2rem 1rem 4rem; }
+  h1 { font-size:1.6rem; margin:0 0 .25rem; }
+  h2 { font-size:1.15rem; margin:2.2rem 0 .5rem; padding-bottom:.3rem; border-bottom:1px solid var(--line); }
+  p, li { margin:.5rem 0; }
+  .meta { color:var(--muted); font-size:.9rem; }
+  table { border-collapse:collapse; width:100%; margin:.75rem 0; font-size:.95rem; }
+  th, td { border:1px solid var(--line); padding:.5rem .6rem; text-align:left; vertical-align:top; }
+  th { background:color-mix(in srgb, var(--line) 35%, transparent); white-space:nowrap; }
+  a { color:var(--accent); }
+  .en { margin-top:3rem; padding-top:1rem; border-top:2px solid var(--line); }
+</style>
+</head>
+<body>
+<main>
+<h1>Frank プライバシーポリシー</h1>
+<p class="meta">最終更新日: 2026年11月13日 ／ 運営者: 齋藤和樹</p>
+
+<p>「Frank」(以下「本アプリ」)は、ビルの設備メーター(電気・水道・熱量)の検針値を、中央監視装置の値と照らし合わせて記録する業務用アプリです。本アプリが扱う情報と、その使い方を以下に示します。</p>
+
+<h2>1. 取得する情報と利用目的</h2>
+<table>
+<tr><th>情報</th><th>内容</th><th>目的</th></tr>
+<tr><td>読み合わせの記録</td><td>入力値、中央監視装置の値、判定結果(OK/NG)、日時、対象のデバイス・オブジェクト、メモ</td><td>検針結果の記録・履歴表示・台帳への出力</td></tr>
+<tr><td>メーターの写真</td><td>カメラで撮影した、または写真から選んだメーターの画像</td><td>記録の保存、および画像からの数値・銘板情報の読み取り(AI解析)</td></tr>
+<tr><td>担当者情報</td><td>アプリに入力した氏名とメールアドレス</td><td>記録の「担当者」の表示、複数人で記録を区別するため</td></tr>
+<tr><td>機器情報</td><td>メーターの銘板に記載された製造者・型式・製造番号・製造年・検定有効期限など</td><td>機器台帳の作成</td></tr>
+</table>
+<p>本アプリは、広告の表示、利用状況の追跡(トラッキング)、第三者の解析ツールの組み込みを行いません。位置情報、連絡先、健康情報は取得しません。</p>
+
+<h2>2. 情報の保存場所と処理</h2>
+<ul>
+<li><strong>端末内:</strong> 記録・写真・設定は、まずお使いの端末内に保存されます。</li>
+<li><strong>クラウド(Microsoft Azure・東日本リージョン):</strong> 同期を行うと、記録は Azure SQL Database に、写真は Azure Blob Storage に保存されます。</li>
+<li><strong>画像のAI解析(Azure OpenAI Service):</strong> 写真は、数値と銘板情報を読み取るために Azure OpenAI Service へ送信されます。Azure OpenAI Service に送られたデータは、モデルの学習には使用されません。</li>
+<li><strong>アバター画像(Gravatar):</strong> 設定画面のアバター表示のため、入力されたメールアドレスから計算した識別子(ハッシュ値)を Gravatar(gravatar.com)へ送って画像を取得します。メールアドレスそのものは送信しません。</li>
+<li><strong>ゲートウェイ:</strong> 現場のBACnetゲートウェイとは、利用者が設定したネットワーク(閉域VPNなど)の内側でのみ通信します。</li>
+</ul>
+
+<h2>3. 第三者への提供</h2>
+<p>法令に基づく場合を除き、取得した情報を第三者へ販売・提供しません。上記のクラウド事業者(Microsoft)には、サービスの提供に必要な範囲で処理を委託しています。</p>
+
+<h2>4. 保存期間と削除</h2>
+<p>記録と写真は、運営者が削除するまで保存します。端末内のデータは、アプリを削除すると消去されます。クラウドに保存された情報の削除を希望する場合は、下記の連絡先へご連絡ください。なお、記録の訂正は元の記録を残したまま無効化する方式で行います。</p>
+
+<h2>5. 端末の権限</h2>
+<ul>
+<li><strong>カメラ:</strong> メーターの撮影とQRコードの読み取りに使用します。</li>
+<li><strong>写真ライブラリ:</strong> メーター画像の選択に使用します。</li>
+<li><strong>ローカルネットワーク:</strong> 現場のゲートウェイとの通信に使用します。</li>
+</ul>
+<p>いずれも、端末の設定からいつでもオフにできます。</p>
+
+<h2>6. セキュリティ</h2>
+<p>通信にはTLS(HTTPS)を用います。クラウドへの接続に使うキーは、端末のキーチェーンに保存します。ただし、閉域ネットワーク内のゲートウェイとは、その内部に限りHTTPで通信する場合があります。</p>
+
+<h2>7. お子様の情報</h2>
+<p>本アプリは業務用であり、13歳未満の方からの情報を意図して取得することはありません。</p>
+
+<h2>8. 変更</h2>
+<p>本ポリシーを変更する場合は、このページを更新し、最終更新日を改めます。</p>
+
+<h2>9. お問い合わせ</h2>
+<p>運営者: 齋藤和樹<br>メール: <a href="mailto:kazuki.saito0430@gmail.com">kazuki.saito0430@gmail.com</a></p>
+
+<section class="en" lang="en">
+<h1>Frank Privacy Policy</h1>
+<p class="meta">Last updated: November 13, 2026 · Operator: Kazuki Saito</p>
+<p>Frank is a business app for verifying building utility meters (electricity, water, heat) against a central monitoring system. This summary describes the data it handles.</p>
+<ul>
+<li><strong>Data we handle:</strong> reading records (entered value, monitored value, result, date, device/object, memo), photos of meters, the name and email address entered in the app, and meter nameplate details.</li>
+<li><strong>Purpose:</strong> recording and displaying verification results, and reading meter values and nameplates from photos. Data is used only for app functionality.</li>
+<li><strong>Storage:</strong> on your device first; after sync, in Microsoft Azure (Japan East) — Azure SQL Database for records and Azure Blob Storage for photos.</li>
+<li><strong>AI processing:</strong> photos are sent to Azure OpenAI Service to read values. Data sent to Azure OpenAI is not used to train models.</li>
+<li><strong>Gravatar:</strong> a hash of the entered email address is sent to gravatar.com to show an avatar. The email address itself is not sent.</li>
+<li><strong>No tracking:</strong> no advertising, no third-party analytics, no location data.</li>
+<li><strong>Sharing:</strong> we do not sell or share data with third parties, apart from Microsoft as our cloud processor.</li>
+<li><strong>Deletion:</strong> contact us at <a href="mailto:kazuki.saito0430@gmail.com">kazuki.saito0430@gmail.com</a> to request deletion of data stored in the cloud.</li>
+</ul>
+</section>
+</main>
+</body>
+</html>
